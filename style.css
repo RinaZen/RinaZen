@@ -1,0 +1,59 @@
+body {
+    font-family: "Hiragino Maru Gothic ProN", sans-serif;
+    background-color: #fff4e6;
+    text-align: center;
+    margin: 0;
+}
+
+header {
+    background-color: #ffcc99;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+.question {
+    background: #ffffff;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ff9966;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #ff7744;
+}
+
+.result-btn {
+    margin-top: 20px;
+    font-size: 16px;
+    padding: 12px 20px;
+}
+
+#result {
+    margin-top: 25px;
+    font-size: 18px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+}
