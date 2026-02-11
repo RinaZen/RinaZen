@@ -4,63 +4,108 @@
   <meta charset="UTF-8">
   <title>犬種診断 🐶</title>
   <style>
-    body { font-family: sans-serif; text-align: center; margin: 20px; }
-    button { margin: 5px; padding: 10px 20px; font-size: 16px; }
-    #result { margin-top: 20px; font-size: 20px; font-weight: bold; }
+    /* ===== 全体デザイン ===== */
+    body { 
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center; 
+      margin: 20px; 
+      background: #fff0f5; /* 淡いピンク背景 */
+      color: #333;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #ff69b4;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button { 
+      margin: 5px; 
+      padding: 12px 25px; 
+      font-size: 16px; 
+      border-radius: 12px; 
+      border: none; 
+      background: #ffb6c1; 
+      color: white; 
+      cursor: pointer; 
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ff69b4;
+    }
+
+    #result { 
+      margin-top: 20px; 
+      font-size: 22px; 
+      font-weight: bold; 
+      color: #ff69b4;
+      background: #fff0f5;
+      border-radius: 12px;
+      padding: 15px;
+    }
   </style>
 </head>
 <body>
-  <h1>あなたにピッタリの犬種診断 🐶</h1>
-  <p>質問に答えて、あなたにぴったりの犬種を見つけよう！</p>
+  <h1>🐾 あなたにピッタリの犬種診断 🐾</h1>
+  <p>質問に答えて、あなたにピッタリの犬種を見つけよう！</p>
 
   <div id="question"></div>
   <div id="choices"></div>
   <div id="result"></div>
 
   <script>
+    // ===== 質問と選択肢 =====
     const questions = [
-      "Q1. 好きな遊びは？",
-      "Q2. お散歩はどのくらい行きたい？",
-      "Q3. おもちゃで遊ぶのは好き？",
-      "Q4. 水遊びは好き？",
-      "Q5. 甘えるのは好き？",
-      "Q6. 一緒に長時間過ごせる？",
-      "Q7. 鳴くのは気になる？",
-      "Q8. お手入れは苦手？",
-      "Q9. 初めて犬を飼う？",
-      "Q10. 家で静かに過ごすのは好き？"
+      "Q1. 見た目が好きなのは？",
+      "Q2. 大きさは？",
+      "Q3. お散歩はどれくらい行きたい？",
+      "Q4. 好きな性格は？",
+      "Q5. 毛の長さは？",
+      "Q6. 一緒に遊ぶなら？",
+      "Q7. お出掛けするなら？",
+      "Q8. 抜け毛は気になる？",
+      "Q9. どっちが嬉しい？",
+      "Q10. 家にいる時間は？"
     ];
 
     const choicesList = [
-      ["A: 元気に遊びたい", "B: のんびり遊ぶ"],
-      ["A: 毎日長めに", "B: 短めでOK"],
-      ["A: 好き", "B: あまり遊ばない"],
-      ["A: 好き", "B: 苦手"],
-      ["A: 好き", "B: あまり甘えない"],
-      ["A: 長時間OK", "B: 短時間でOK"],
-      ["A: 気にならない", "B: 静かな方がいい"],
-      ["A: 大丈夫", "B: 少し苦手"],
-      ["A: 初めて", "B: 経験あり"],
-      ["A: 好き", "B: あまり静かに過ごしたくない"]
+      ["A: かっこいい", "B: かわいい"],
+      ["A: 大きい犬", "B: 小さい犬"],
+      ["A: 30分以内", "B: 1時間以上"],
+      ["A: 元気いっぱい", "B: のんびり"],
+      ["A: 短いのが好き", "B: 長いのが好き"],
+      ["A: 室内で遊ぶ", "B: 屋外で遊ぶ"],
+      ["A: ドッグラン", "B: プール"],
+      ["A: 気になる", "B: 気にならない"],
+      ["A: 自分だけに懐く", "B: 自分以外にもフレンドリー"],
+      ["A: インドア", "B: アウトドア"]
     ];
 
-    // 診断結果 10種類
+    // ===== 診断結果 10犬種 =====
     const dogTypes = [
-      "ジャックラッセル 🐶", 
-      "トイプードル 🐩", 
-      "ゴールデンレトリバー 🐕", 
-      "シーズー 🐶", 
-      "ミニチュアシュナウザー 🐶", 
-      "フレンチブルドッグ 🐶", 
       "チワワ 🐶", 
-      "コーギー 🐶", 
       "ポメラニアン 🐶", 
+      "シーズー 🐶", 
+      "トイプードル 🐩", 
+      "ジャックラッセル 🐶", 
+      "コーギー 🐶", 
+      "フレンチブルドッグ 🐶", 
+      "ミニチュアシュナウザー 🐶", 
+      "ゴールデンレトリバー 🐕", 
       "柴犬 🐕"
     ];
 
     let currentQ = 0;
     let score = 0;
 
+    // ===== 質問表示 =====
     function showQuestion() {
       if (currentQ < questions.length) {
         document.getElementById('question').innerText = questions[currentQ];
@@ -77,15 +122,15 @@
       }
     }
 
+    // ===== 選択肢をクリックしたとき =====
     function select(option) {
-      // Aなら2点、Bなら1点
-      score += option.startsWith("A") ? 2 : 1;
+      score += option.startsWith("A") ? 2 : 1; // Aなら2点、Bなら1点
       currentQ++;
       showQuestion();
     }
 
+    // ===== 結果表示 =====
     function showResult() {
-      // 10問で合計10~20点 → 10通りの犬種に分ける
       const index = Math.min(Math.floor((score - 10) / 1), 9);
       const result = `あなたにピッタリの犬種は：${dogTypes[index]}！`;
 
@@ -94,6 +139,7 @@
       document.getElementById('result').innerText = result;
     }
 
+    // ===== 初期表示 =====
     showQuestion();
   </script>
 </body>
