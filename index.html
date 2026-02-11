@@ -1,62 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>わんこ診断サイト</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>犬サイト</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background-color: #f9f9f9; }
+    img { max-width: 80%; margin-top: 20px; }
+  </style>
 </head>
-
 <body>
-
-    <header>
-        <h1>🐶 わんこタイプ診断 🐶</h1>
-        <p>あなたを犬に例えるとどのタイプ？</p>
-    </header>
-
-    <main>
-
-        <!-- サイト説明 -->
-        <section class="about">
-            <h2>このサイトについて</h2>
-            <p>
-                いくつかの質問に答えるだけで、  
-                あなたの性格を「犬タイプ」に例えて診断します！
-            </p>
-        </section>
-
-        <!-- 診断コーナー -->
-        <section class="diagnosis">
-            <h2>🐾 診断スタート</h2>
-
-            <div class="question">
-                <p>Q1. 休日はどう過ごしたい？</p>
-                <button onclick="answer('active')">外に出かけたい！</button>
-                <button onclick="answer('relax')">家でのんびり</button>
-            </div>
-
-            <div class="question">
-                <p>Q2. 人との関わり方は？</p>
-                <button onclick="answer('friendly')">誰とでも仲良く！</button>
-                <button onclick="answer('cool')">少人数が好き</button>
-            </div>
-
-            <div class="question">
-                <p>Q3. 新しいことへの挑戦は？</p>
-                <button onclick="answer('challenge')">ワクワクする！</button>
-                <button onclick="answer('careful')">慎重に考える</button>
-            </div>
-
-            <button class="result-btn" onclick="showResult()">診断結果を見る</button>
-
-            <div id="result"></div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>© 2026 わんこ診断</p>
-    </footer>
-
-    <script src="script.js"></script>
+  <h1>かわいい犬たち 🐶</h1>
+  <img src="dog.jpg" alt="犬">
+  <p>ここは犬好きのためのサイトです。</p>
 </body>
 </html>
