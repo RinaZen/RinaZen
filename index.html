@@ -2,15 +2,99 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>犬サイト</title>
+  <title>犬種診断 🐶</title>
   <style>
-    body { font-family: sans-serif; text-align: center; background-color: #f9f9f9; }
-    img { max-width: 80%; margin-top: 20px; }
+    body { font-family: sans-serif; text-align: center; margin: 20px; }
+    button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+    #result { margin-top: 20px; font-size: 20px; font-weight: bold; }
   </style>
 </head>
 <body>
-  <h1>かわいい犬たち 🐶</h1>
-  <img src="dog.jpg" alt="犬">
-  <p>ここは犬好きのためのサイトです。</p>
+  <h1>あなたにピッタリの犬種診断 🐶</h1>
+  <p>質問に答えて、あなたにぴったりの犬種を見つけよう！</p>
+
+  <div id="question"></div>
+  <div id="choices"></div>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      "Q1. 好きな遊びは？",
+      "Q2. お散歩はどのくらい行きたい？",
+      "Q3. おもちゃで遊ぶのは好き？",
+      "Q4. 水遊びは好き？",
+      "Q5. 甘えるのは好き？",
+      "Q6. 一緒に長時間過ごせる？",
+      "Q7. 鳴くのは気になる？",
+      "Q8. お手入れは苦手？",
+      "Q9. 初めて犬を飼う？",
+      "Q10. 家で静かに過ごすのは好き？"
+    ];
+
+    const choicesList = [
+      ["A: 元気に遊びたい", "B: のんびり遊ぶ"],
+      ["A: 毎日長めに", "B: 短めでOK"],
+      ["A: 好き", "B: あまり遊ばない"],
+      ["A: 好き", "B: 苦手"],
+      ["A: 好き", "B: あまり甘えない"],
+      ["A: 長時間OK", "B: 短時間でOK"],
+      ["A: 気にならない", "B: 静かな方がいい"],
+      ["A: 大丈夫", "B: 少し苦手"],
+      ["A: 初めて", "B: 経験あり"],
+      ["A: 好き", "B: あまり静かに過ごしたくない"]
+    ];
+
+    // 診断結果 10種類
+    const dogTypes = [
+      "ジャックラッセル 🐶", 
+      "トイプードル 🐩", 
+      "ゴールデンレトリバー 🐕", 
+      "シーズー 🐶", 
+      "ミニチュアシュナウザー 🐶", 
+      "フレンチブルドッグ 🐶", 
+      "チワワ 🐶", 
+      "コーギー 🐶", 
+      "ポメラニアン 🐶", 
+      "柴犬 🐕"
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+
+    function showQuestion() {
+      if (currentQ < questions.length) {
+        document.getElementById('question').innerText = questions[currentQ];
+        const choicesDiv = document.getElementById('choices');
+        choicesDiv.innerHTML = "";
+        choicesList[currentQ].forEach(option => {
+          const btn = document.createElement("button");
+          btn.innerText = option;
+          btn.onclick = () => select(option[0]);
+          choicesDiv.appendChild(btn);
+        });
+      } else {
+        showResult();
+      }
+    }
+
+    function select(option) {
+      // Aなら2点、Bなら1点
+      score += option.startsWith("A") ? 2 : 1;
+      currentQ++;
+      showQuestion();
+    }
+
+    function showResult() {
+      // 10問で合計10~20点 → 10通りの犬種に分ける
+      const index = Math.min(Math.floor((score - 10) / 1), 9);
+      const result = `あなたにピッタリの犬種は：${dogTypes[index]}！`;
+
+      document.getElementById('question').innerText = "";
+      document.getElementById('choices').innerHTML = "";
+      document.getElementById('result').innerText = result;
+    }
+
+    showQuestion();
+  </script>
 </body>
 </html>
